@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Kategori Düzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model Ahe.Models.Kategoriler
+
+<section class="widget">
+    <header>
+        <span class="icon">&#128200;</span>
+        <hgroup>
+            <h1>Kategori Düzenle</h1>
+        </hgroup>
+    </header>
+    <div class="content">
+        <form method="post" action="/Admin/kategoriGuncelle">
+            <div class="field-wrap">
+                <label>Kategori</label>
+                @Html.TextBox("Kategori", Model.Kategori)
+            </div>
+            @Html.Hidden("ID", @Model.ID)
+            <button type="submit" class="green">Kaydet</button>
+            <button type="cancel" class="" onclick="window.location='kategoriler';return false;">Vazgeç</button>
+        </form>
+    </div>
+</section>

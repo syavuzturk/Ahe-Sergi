@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "sergiekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<section class="widget">
+    <header>
+        <span class="icon">&#128200;</span>
+        <hgroup>
+            <h1>Sergi Ekle</h1>
+        </hgroup>
+    </header>
+    <div class="content">
+        <form method="post" action="/Admin/sergiKaydet" enctype="multipart/form-data">
+            <div class="field-wrap">
+                <label>Tarih</label>
+                @Html.DropDownList("Tarih", new SelectList(Model.Tarih, "Value", "Text", "Seç"),new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Adı</label>
+                @Html.TextBox("Adi",null,new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Başlık</label>
+                @Html.TextBox("Baslik",null,new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Kategori</label>
+                @Html.DropDownList("KategoriID", new SelectList(Model.kategoriler, "ID", "Kategori"),new {required = "required"})
+            </div>
+
+            <div class="field-wrap">
+                <label>Görsel Büyük</label>
+                <input type="file" id="GorselA" name="GorselA" required="required" accept="image/x-png,image/gif,image/jpeg,image/jpg">
+            </div>
+            <div class="field-wrap">
+                <label>Görsel Küçük</label>
+                <input type="file" id="GorselB" name="GorselB" required="required" accept="image/x-png,image/gif,image/jpeg,image/jpg">
+            </div>
+
+            <div class="field-wrap">
+                <label>Durumu</label>
+                <select id="Aktif" name="Aktif">
+                    <option value="True">Aktif</option>
+                    <option value="False">Aktif Değil</option>
+                </select>
+            </div>
+            <div class="field-wrap">
+                <label>Genre</label>
+                @Html.TextBox("Genre")
+            </div>
+            <div class="field-wrap">
+                <label>Technique</label>
+                @Html.TextBox("Technique")
+            </div>
+            <div class="field-wrap">
+                <label>Material</label>
+                @Html.TextBox("Material")
+            </div>
+            <div class="field-wrap">
+                <label>Dimensions</label>
+                @Html.TextBox("Dimensions")
+            </div>
+            <div class="field-wrap">
+                <label>Gallery</label>
+                @Html.TextBox("Gallery")
+            </div>
+            <button type="submit" class="green">Kaydet</button>
+            <button type="cancel" class="" onclick="window.location='sergiler';return false;">Vazgeç</button>
+        </form>
+    </div>
+</section>
+
+
+@section script
+{
+    <script>
+        $("#KategoriID").append($("<option />").val(" ").html("Seç"));
+        $("#KategoriID").val(" ").change();
+
+        $('input[type=file]').change(function () {
+        var val = $(this).val().toLowerCase(),
+            regex = new RegExp("(.*?)\.(jpg|jpeg|png|gif)$");
+
+        if (!(regex.test(val))) {
+            $(this).val('');
+            alert('Sadece .jpg, .jpeg, .png, .gif formatlarında dosya yükleyebilirsiniz. ');
+        }
+        });
+
+    </script>
+}

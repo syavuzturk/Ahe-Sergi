@@ -1,0 +1,123 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kadın Gözüyle Hayattan Kareler @ViewBag.tarih</title>
+    <meta name="description" content="Add a description" />
+    <meta name="keywords" content="Add keywords" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/component2.css" />
+
+    <script src="/assets/js/modernizr.custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.min.css" />
+    <script src="/assets/js/jquery.fancybox.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="anadolu-logo"></div>
+        <div class="kghk-logo"></div>
+        <div id="gr-gallery" class="gr-gallery">
+            <div class="gr-main">
+                <figure class="aboutfigure">
+                    <div class="about">
+                        <h1>
+                            Kadın Gözüyle Hayattan Kareler 20
+                            Dijital Sergimize Hoş Geldiniz.
+                        </h1>
+                        <p>
+
+                            “Kadın Gözüyle Hayattan Kareler” fotoğraf yarışmamız ile 14 yıldır kadın fotoğrafçıları ‘Hayata Dair’ temasıyla bir araya getirirken, bu yıl bir ilki de gerçekleştiriyoruz: kadın fotoğrafçılarımızın hayata bakış açılarının daha fazla kişiye ulaşabilmesi adına sergimizi bu yıldan itibaren dijitale de taşıyoruz!
+                            <br><br>
+                            Değerli jüri üyelerimiz Arel Üniversitesi Güzel Sanatlar Fakültesi Dekan Vekili Prof. Güler Ertan, fotoğraf sanatçısı İzzet Keribar, Mimar Sinan Güzel Sanatlar Üniversitesi Güzel Sanatlar Fakültesi Fotoğraf Bölümü Öğretim Üyesi Prof. Nihal Kafalı, fotoğraf muhabiri ve belgesel yapımcısı Coşkun Aral ve Anadolu Hayat Emeklilik İletişim Müşaviri Nihan Güney tarafından değerlendirmeye alınan birbirinden güzel binlerce fotoğraf arasından 44 eser, sergilenmek üzere seçildi.
+                            <br><br>
+                            Kadın Gözüyle Hayattan Kareler '20’ye katılan tüm yarışmacılarımıza, sergimizi ziyaret eden fotoğraf severlere, değerli jürimize ve Türkiye Fotoğraf Sanatı Federasyonu’na içten teşekkürlerimizi sunarız.
+                            <br><br>
+                            İyi seyirler...
+                            <span class="tfsf-logo"><img alt="img02" src="/assets/images/tfsf-logo.jpg" /></span>
+                        </p>
+
+                    </div>
+                </figure>
+                <figure class="jurifigure">
+                    <div class="juri">
+                        <h1>Juri</h1>
+
+                        @foreach (var item in ViewBag.juriler)
+                        {
+                            <div class="juri-box">
+                                <img src="/assets/images/juri/@item.Gorsel">
+                                <a data-fancybox data-src="#@item.ID" href="javascript:;"><label class="juri-name">@item.AdSoyad</label></a>
+                            </div>
+                            <div class="juri-box-wrapper" id="@item.ID">
+                                <div class="juri-detail">
+                                    <div class="juri-photo-detail">
+                                        <img src="/assets/images/juri/@item.Gorsel"><label class="juri-name">@item.AdSoyad</label><label class="juri-career">@item.Unvan</label>
+                                    </div>
+                                    <div class="juri-cv">
+                                        @item.Bilgi
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                    <div class="clear"></div>
+
+                </figure>
+                <div class="clear"></div>
+                @foreach (var item in ViewBag.sergiler)
+                {
+                            <figure>
+                                <div>
+                                    <a data-fancybox href="/uploads/sergi/@item.GorselA" onClick="fancy()"><img src="/uploads/sergi/@item.GorselB"/></a>
+                                </div>
+                                <figcaption>
+                                    <h2><span>@item.Kategori</span></h2>
+                                    <h2><span>@item.Adi</span></h2>
+                                    <h2><span>@item.Baslik</span></h2>
+                                    <div>
+                                        <dl>
+                                            <dt>Genre</dt>
+                                            <dd>@item.Genre</dd>
+                                            <dt>Technique</dt>
+                                            <dd>@item.Technique</dd>
+                                            <dt>Material</dt>
+                                            <dd>@item.Material</dd>
+                                            <dt>Dimensions</dt>
+                                            <dd>@item.Dimensions</dd>
+                                            <dt>Gallery</dt>
+                                            <dd>@item.Gallery</dd>
+                                        </dl>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        }
+</div>
+        </div>
+    </div><!-- /container -->
+    <script src="/assets/js/wallgallery.js"></script>
+
+    <script>
+        $(function () {
+            Gallery.init({
+                layout: [1,1,@ViewBag.layout]
+            });
+            console.log(@ViewBag.layout);
+        });</script>
+
+
+
+
+</body>
+</html>

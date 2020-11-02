@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Yeni Kategori Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="widget">
+    <header>
+        <span class="icon">&#128200;</span>
+        <hgroup>
+            <h1>Yeni Kategori Ekle</h1>
+        </hgroup>
+    </header>
+    <div class="content">
+        <form method="post" action="/Admin/kategoriKaydet" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <div class="field-wrap">
+                <label>Kategori</label>
+                @Html.TextBox("Kategori",null,new {required = "required"})
+            </div>
+            <button type="submit" class="green">Kaydet</button>
+            <button type="cancel" class="" onclick="window.location='kategoriler';return false;">Vazgeç</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Sergiler";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model dynamic
+
+<section class="widget">
+    <header>
+        <span class="icon">&#128200;</span>
+        <hgroup>
+            <h1>Sergiler</h1>
+        </hgroup>
+    </header>
+    <div class="content">
+        <button class="green" onclick="location.href='/admin/sergiekle';" style="margin-bottom: 10px;">Yeni Sergi Ekle</button>
+        <table id="myTable" border="0" width="100">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="header">Tarih</th>
+                    <th class="header">Görsel</th>
+                    <th class="header">Adı</th>
+                    <th class="header">Başlık</th>
+                    <th class="header">Kategori</th>
+                    <th class="header">Genre</th>
+                    <th class="header">Technique</th>
+                    <th class="header">Material</th>
+                    <th class="header">Dimensions</th>
+                    <th class="header">Gallery</th>
+                    <th class="header">Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (dynamic item in Model)
+                {
+                <tr class="odd">
+                    <td><a href="sergiSil/@item.ID" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a> / <a href="sergiDuzenle/@item.ID">Düzenle</a></td>
+                    <td>@item.Tarih</td>
+                    <td><img src="/uploads/sergi/@item.GorselA" style="width:50px;" /></td>
+                    <td>@item.Adi</td>
+                    <td>@item.Baslik</td>
+                    <td>@item.Kategori</td>
+                    <td>@item.Genre</td>
+                    <td>@item.Technique</td>
+                    <td>@item.Material</td>
+                    <td>@item.Dimensions</td>
+                    <td>@item.Gallery</td>
+                    <td>@item.Aktif</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+

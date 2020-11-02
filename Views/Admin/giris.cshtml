@@ -1,0 +1,56 @@
+﻿@model Ahe.Models.Kullanicilar
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <title>AHE Panel</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="~/assets/css/style.css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="~/assets/css/ie.css" media="all" /><![endif]-->
+    <!--[if IE 9]><link rel="stylesheet" href="~/assets/css/ie9.css" media="all" /><![endif]-->
+    <!--[if lt IE 9]><link rel="stylesheet" href="~/assets/css/lt-ie-9.css" media="all" /><![endif]-->
+</head>
+<body class="login">
+    <section>
+        <h1><img src="~/assets/images/anadolu-hayat-logo.png" /></h1>
+
+        @using (Html.BeginForm("giris", "Admin", FormMethod.Post))
+        {
+                @Html.TextBoxFor(m => m.KullaniciAdi, new {placeholder="Kullanıcı Adı",@class="giris" })
+                @Html.TextBoxFor(m => m.Sifre, new {placeholder="Şifre",@type = "password",@class="giris" })
+                <button class="blue">Giriş</button>
+                <div class="dvErr">@ViewBag.Hata</div>
+        }
+    </section>
+    <script src="~/assets/js/jquery.1.6.1.min.js"></script>
+    <script type="text/javascript">
+
+
+        $('input').each(function () {
+
+            var default_value = this.value;
+
+            $(this).focus(function () {
+                if (this.value == default_value) {
+                    this.value = '';
+                }
+            });
+
+            $(this).blur(function () {
+                if (this.value == '') {
+                    this.value = default_value;
+                }
+            });
+
+        });
+            });
+    </script>
+</body>
+</html>

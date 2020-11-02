@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "juriler";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<Ahe.Models.Juri>
+
+<section class="widget">
+    <header>
+        <span class="icon">&#128200;</span>
+        <hgroup>
+            <h1>Jüriler</h1>
+        </hgroup>
+    </header>
+    <div class="content">
+        <button class="green" onclick="location.href='/admin/juriekle';" style="margin-bottom: 10px;">Yeni Jüri Ekle</button>
+        <table id="myTable" border="0" width="100">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="header">Tarih</th>
+                    <th class="header">Ad Soyad</th>
+                    <th class="header">Ünvan</th>
+                    <th class="header">Görsel</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="odd">
+                        <td><a href="juriSil/@item.ID" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a> / <a href="juriDuzenle/@item.ID">Düzenle</a></td>
+                        <td>@item.Tarih</td>
+                        <td>@item.AdSoyad</td>
+                        <td>@item.Unvan</td>
+                        <td><img src="/uploads/juri/@item.Gorsel" style="width:50px;" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+

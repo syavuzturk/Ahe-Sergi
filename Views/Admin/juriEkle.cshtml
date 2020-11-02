@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "juriekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model dynamic
+<section class="widget">
+    <header>
+        <span class="icon">&#128200;</span>
+        <hgroup>
+            <h1>Jüri Ekle</h1>
+        </hgroup>
+    </header>
+    <div class="content">
+        <form method="post" action="/Admin/juriKaydet" enctype="multipart/form-data">
+            <div class="field-wrap">
+                <label>Tarih</label>
+                @Html.DropDownList("Tarih", new SelectList(Model.Tarih, "Value", "Text"),new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Ad Soyad</label>
+                @Html.TextBox("AdSoyad",null,new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Ünvan</label>
+                @Html.TextBox("Unvan",null,new {required = "required"})
+            </div>
+
+            <div class="field-wrap">
+                <label>Görsel</label>
+                <input type="file" id="file" name="file" required="required">
+                @Html.Hidden("Gorsel")
+            </div>
+
+            <div class="field-wrap">
+                <label>Bilgi</label>
+                @Html.TextArea("Bilgi", new { style = " height:100px; ",required = "required" })
+            </div>
+            <button type="submit" class="green">Kaydet</button>
+            <button type="cancel" class="" onclick="window.location='juriler';return false;">Vazgeç</button>
+        </form>
+    </div>
+</section>

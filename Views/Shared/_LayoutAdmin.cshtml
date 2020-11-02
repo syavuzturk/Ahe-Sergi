@@ -1,0 +1,60 @@
+﻿@using Ahe;
+@{ 
+    Alert alert = (Alert)TempData["Alert"];
+}
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="~/assets/css/style.css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="~/assets/css/ie.css" media="all" /><![endif]-->
+    <!--[if IE 9]><link rel="stylesheet" href="~/assets/css/ie9.css" media="all" /><![endif]-->
+    <!--[if lt IE 9]><link rel="stylesheet" href="~/assets/css/lt-ie-9.css" media="all" /><![endif]-->
+</head>
+<body>
+    <div class="testing">
+        <header class="main">
+            <h1>AHE Yönetim Paneli</h1>
+        </header>
+        <section class="user">
+            <div class="profile-img">
+                <p><img src="~/assets/images/uiface2.png" alt="" height="40" width="40" /> Hoşgeldin @Session["kullaniciAdi"].ToString() </p>
+            </div>
+            <div class="buttons">
+                <span class="button blue"><a href="/admin/cikis">Çıkış</a></span>
+            </div>
+        </section>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/admin/Sergiler"><span class="icon">&#127748;</span> Sergiler</a></li>
+            <li><a href="/admin/juriler"><span class="icon">&#59170;</span> Juriler</a></li>
+            <li><a href="/admin/sifreGuncelle"><span class="icon">&#128273;</span> Şifre Güncelle</a></li>
+        </ul>
+    </nav>
+
+    @if (alert != null)
+    {
+        <section class="alert">
+            <div class="@alert.color">
+                <p>@alert.message</p>
+                <span class="close">&#10006;</span>
+            </div>
+        </section>
+    }
+    <section class="content">
+        @RenderBody()
+    </section>
+    <script src="~/assets/js/jquery.1.6.1.min.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/js/jquery.checkbox.min.js"></script>
+    <script src="~/assets/js/jquery.tablesorter.min.js"></script>
+    @RenderSection("script", required: false)
+</body>
+</html>
+

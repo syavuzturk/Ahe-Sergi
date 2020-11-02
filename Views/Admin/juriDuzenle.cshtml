@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Juri Düzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model dynamic
+
+<section class="widget">
+    <header>
+        <span class="icon">&#128200;</span>
+        <hgroup>
+            <h1>Jüri Düzenle</h1>
+        </hgroup>
+    </header>
+    <div class="content">
+        <form method="post" action="/Admin/juriGuncelle" enctype="multipart/form-data">
+            <div class="field-wrap">
+                <label>Tarih</label>
+                @Html.DropDownList("Tarih", new SelectList(Model.Tarih, "Value", "Text", @Model.Juri.Tarih),new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Ad Soyad</label>
+                @Html.TextBox("AdSoyad", (string)Model.Juri.AdSoyad,new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Ünvan</label>
+                @Html.TextBox("Unvan", (string)Model.Juri.Unvan,new {required = "required"})
+            </div>
+
+            <div class="field-wrap">
+                <label>Görsel</label>
+                <input type="file" id="file" name="file">
+                @Html.Hidden("Gorsel", (string)Model.Juri.Gorsel)
+            </div>
+
+            <div class="field-wrap">
+                <label>Bilgi</label>
+                @Html.TextArea("Bilgi", (string)@Model.Juri.Bilgi, new { style = " height:100px;",required = "required"})
+            </div>
+            @Html.Hidden("ID", (int)Model.Juri.ID)
+            <button type="submit" class="green">Kaydet</button>
+            <button type="cancel" class="" onclick="window.location='juriler';return false;">Vazgeç</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "sergiDuzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model dynamic
+
+<section class="widget">
+    <header>
+        <span class="icon">&#128200;</span>
+        <hgroup>
+            <h1>Sergi Düzenle</h1>
+        </hgroup>
+    </header>
+    <div class="content">
+        <form method="post" action="/Admin/sergiGuncelle" enctype="multipart/form-data">
+            <div class="field-wrap">
+                <label>Tarih</label>
+                @Html.DropDownList("Tarih", new SelectList(Model.Tarih, "Value", "Text", @Model.sergi.Tarih),new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Adı</label>
+                @Html.TextBox("Adi", (string)Model.sergi.Adi,new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Başlık</label>
+                @Html.TextBox("Baslik", (string)Model.sergi.Baslik,new {required = "required"})
+            </div>
+            <div class="field-wrap">
+                <label>Kategori</label>
+                @Html.DropDownList("KategoriID", new SelectList(Model.kategoriler, "ID", "Kategori", @Model.sergi.KategoriID))
+            </div>
+
+            <div class="field-wrap">
+                <label>Görsel Büyük</label>
+                <input type="file" id="GorselA" name="GorselA" accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                @Html.Hidden("GorselA", (string)Model.sergi.GorselA)
+            </div>
+            <div class="field-wrap">
+                <label>Görsel Küçük</label>
+                <input type="file" id="GorselB" name="GorselB" accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                @Html.Hidden("GorselB", (string)Model.sergi.GorselB)
+            </div>
+
+            <div class="field-wrap">
+                <label>Durumu</label>
+                <select id="Aktif" name="Aktif">
+                    <option value="True">Aktif</option>
+                    <option value="False">Aktif Değil</option>
+                </select>
+            </div>
+            <div class="field-wrap">
+                <label>Genre</label>
+                @Html.TextBox("Genre", (string)Model.sergi.Genre)
+            </div>
+            <div class="field-wrap">
+                <label>Technique</label>
+                @Html.TextBox("Technique", (string)Model.sergi.Technique)
+            </div>
+            <div class="field-wrap">
+                <label>Material</label>
+                @Html.TextBox("Material", (string)Model.sergi.Material)
+            </div>
+            <div class="field-wrap">
+                <label>Dimensions</label>
+                @Html.TextBox("Dimensions", (string)Model.sergi.Dimensions)
+            </div>
+            <div class="field-wrap">
+                <label>Gallery</label>
+                @Html.TextBox("Gallery", (string)Model.sergi.Gallery)
+            </div>
+
+
+            @Html.Hidden("ID", (int)Model.sergi.ID)
+            <button type="submit" class="green">Kaydet</button>
+            <button type="cancel" class="" onclick="window.location='juriler';return false;">Vazgeç</button>
+        </form>
+    </div>
+</section>
+@section script
+{
+    <script>
+    $("#Aktif option").each(function(){
+       if($(this).val() == "@Model.sergi.Aktif"){
+         $(this).attr("selected","selected");
+       }
+    });
+
+     $('input[type=file]').change(function () {
+        var val = $(this).val().toLowerCase(),
+            regex = new RegExp("(.*?)\.(jpg|jpeg|png|gif)$");
+
+        if (!(regex.test(val))) {
+            $(this).val('');
+            alert('Sadece .jpg, .jpeg, .png, .gif formatlarında dosya yükleyebilirsiniz. ');
+        }
+    });
+
+    </script>
+}
+
+
